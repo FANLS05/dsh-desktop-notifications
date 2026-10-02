@@ -25,7 +25,7 @@ text is **markdown-free** (`**`, `` ` ``, `~~` never leak into a notification).
 | 🧹 **Markdown-free text** | emphasis markers, code spans and link syntax are stripped; underscores and file names are preserved |
 | 🪟 **Real Windows toasts** | posted under the DSH AppUserModelID (`com.deepseek.dsh`), so they show as *DeepSeek Harness* and land in the Action Center |
 | 🧾 **Audit log** | one line per toast (`~/.dsh/dsh-desktop-notifications.log`) makes "why did nothing pop up?" answerable |
-| 🪶 **Zero dependencies** | plain ESM + one PowerShell script, no compiler, no bundler, no native module |
+| 🪶 **No hard dependencies** | plain ESM + one PowerShell script, no compiler, no bundler, no native module (`@deepseek-ai/schemastery` is an *optional* peer used only to publish the settings form) |
 
 ## Triggers
 
@@ -68,6 +68,15 @@ node "$env:USERPROFILE\.dsh\plugins\dsh-desktop-notifications\scripts\notify-tes
 ```
 
 ## Configuration
+
+### From the GUI
+
+The plugin exports a `Config` schema, which DSH serves as the row's settings document: open **Settings →
+Plugins**, expand the *dsh-desktop-notifications* bundle and use the configure control on its
+`desktop-notifications` row. Every switch below appears as an editable form, and saving re-applies it
+immediately (no restart).
+
+### From the profile patch
 
 Add a `config:` block to the row in your profile patch
 (`%USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml`):

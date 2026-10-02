@@ -25,7 +25,7 @@ DSH 需要你操作（申请权限、提问）或干完活（完成、出错、�
 | 🧹 **自动去 markdown** | 去掉 `**`、`` ` ``、`~~`、`[文字](链接)`；下划线与文件名保留 |
 | 🪟 **真正的系统通知** | 归属 DSH 自己的 AppUserModelID（`com.deepseek.dsh`），显示为 *DeepSeek Harness*，并进入通知中心 |
 | 🧾 **审计日志** | 每条通知记一行（`~/.dsh/dsh-desktop-notifications.log`），排查"为什么没弹"有据可查 |
-| 🪶 **零依赖** | 纯 ESM + 一个 PowerShell 脚本，无编译器、无打包器、无原生模块 |
+| 🪶 **无硬依赖** | 纯 ESM + 一个 PowerShell 脚本，无编译器、无打包器、无原生模块（`@deepseek-ai/schemastery` 是*可选* peer，只用来生成设置表单） |
 
 ## 触发时机
 
@@ -65,7 +65,15 @@ node "$env:USERPROFILE\.dsh\plugins\dsh-desktop-notifications\scripts\notify-tes
 
 ## 配置
 
-在 profile 的 `%USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml` 里给这一行加 config：
+### 在 GUI 里改（推荐）
+
+插件导出了 `Config` schema，DSH 会把它当作这一行的"设置文档"：
+打开 **设置 → 插件**，展开 *dsh-desktop-notifications* bundle，点 `desktop-notifications` 这一行的配置按钮，
+下面所有开关都会以表单形式呈现，保存后**立即生效**（不用重启）。
+
+### 在 profile patch 里改
+
+在 `%USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml` 里给这一行加 config：
 
 ```yaml
 - id: desktop-notifications

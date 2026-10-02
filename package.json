@@ -23,12 +23,21 @@
   },
   "files": [
     "lib",
+    "scripts",
     "cordis.patch.yml",
     "README.md",
     "README.zh.md"
   ],
   "engines": {
     "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
   },
   "dsh": {
     "engines": {
