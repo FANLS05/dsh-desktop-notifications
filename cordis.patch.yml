@@ -1,0 +1,11 @@
+# dsh-desktop-notifications bundle patch.
+#
+# One host row that listens to the DSH events which need a human (approval,
+# user question, account sign-in) plus session completion and errors, and
+# raises a Windows toast in the bottom-right corner for each of them.
+#
+# `notifyOnMount` (off by default) rings once whenever the plugin loads, which
+# is handy as an install check: set it true here to see a toast on every start.
+- insert:
+    - id: desktop-notifications
+      name: dsh-desktop-notifications
